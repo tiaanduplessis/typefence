@@ -31,7 +31,7 @@ $ yarn add @tiaanduplessis/type
 import type from '@tiaanduplessis/type'
 
 type.isArr([]) // true
-type.isArray(new Array(10)) // true
+type.isArr(new Array(10)) // true
 
 type.isBool(true) // true
 type.isBool(false) // true
