@@ -2,8 +2,10 @@
   "name": "@tiaanduplessis/type",
   "version": "1.0.0",
   "description": "Basic type checking",
-  "main": "dist/type.umd.js",
+  "source": "src/index.js",
+  "main": "dist/type.js",
   "module": "dist/type.m.js",
+  "browser": "dist/type.umd.js",
   "repository": "https://github.com/tiaanduplessis/type",
   "author": "Tiaan du Plessis",
   "license": "MIT",
@@ -12,10 +14,13 @@
     "type-checker",
     "type-checking"
   ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
     "lint": "standard --fix ./**/*.js",
-    "bundle": "microbundle src/index.js"
+    "build": "microbundle src/index.js"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
@@ -23,14 +28,8 @@
     "microbundle": "^0.4.4",
     "standard": "^11.0.1"
   },
-  "babel": {
-    "presets": [
-      [
-        "env"
-      ]
-    ]
-  },
   "standard": {
+    "ignore": ["dist"],
     "env": {
       "jest": true
     }

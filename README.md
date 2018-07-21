@@ -28,7 +28,7 @@ $ yarn add @tiaanduplessis/type
 ## Usage
 
 ```js
-import type from '@tiaanduplessis/type'
+import * as type from '@tiaanduplessis/type'
 
 type.isArr([]) // true
 type.isArr(new Array(10)) // true

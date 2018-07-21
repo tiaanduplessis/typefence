@@ -1,4 +1,4 @@
-import type from './src'
+import * as type from '../'
 
 test('should export type checking functions', () => {
     expect(typeof type).toBe('object')

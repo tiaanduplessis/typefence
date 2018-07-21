@@ -1,4 +1,4 @@
-import type from '@tiaanduplessis/type'
+import * as type from '@tiaanduplessis/type'
 
 type.isArr([]) // true
 type.isArray(new Array(10)) // true
