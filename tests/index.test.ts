@@ -115,4 +115,27 @@ describe("typefence", () => {
     expect(() => t.asserts(true, 'true')).not.toThrowError('true');
     expect(() => t.asserts(false, 'false')).toThrowError('false');
   })
+
+  test('should check if values are the same', () => {
+    expect(t.isSame(true, true)).toBeTruthy()
+    expect(t.isSame('true', 'true')).toBeTruthy()
+    expect(t.isSame(true, false)).toBeFalsy()
+  })
+
+  test('should check if falsy', () => {
+    expect(t.isFalsy(false)).toBeTruthy()
+    expect(t.isFalsy(undefined)).toBeTruthy()
+    expect(t.isFalsy(null)).toBeTruthy()
+    expect(t.isFalsy(0)).toBeTruthy()
+    expect(t.isFalsy('')).toBeTruthy()
+  })
+
+  test('should check if truthy', () => {
+    expect(t.isTruthy(true)).toBeTruthy()
+    expect(t.isTruthy('true')).toBeTruthy()
+    expect(t.isTruthy(1)).toBeTruthy()
+    expect(t.isTruthy(1.5)).toBeTruthy()
+    expect(t.isTruthy({})).toBeTruthy()
+    expect(t.isTruthy([])).toBeTruthy()
+  })
 });

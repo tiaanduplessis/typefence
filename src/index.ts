@@ -86,15 +86,21 @@ export type CheckPredicate = (val: any) => boolean;
 
 export const isEvery =
   (...checks: CheckPredicate[]) =>
-  (val: any): boolean =>
-    checks.every((isValid) => isValid(val));
+  (...vals: any[]): boolean =>
+    checks.every((isValid) => vals.every(isValid));
+
 export const isSome =
   (...checks: CheckPredicate[]) =>
-  (val: any): boolean =>
-    checks.some((isValid) => isValid(val));
+  (...vals: any[]): boolean =>
+    checks.some((isValid) => vals.some(isValid));
 
 export const asserts = (condition: any, msg?: string): asserts condition  =>{
   if (!condition) {
     throw new Error(msg);
   }
 }
+
+export const isSame = (val1: any, val2: any): boolean => Object.is(val1, val2);
+
+export const isTruthy = (val: any): boolean => !!val;
+export const isFalsy = (val: any): boolean => !val;
