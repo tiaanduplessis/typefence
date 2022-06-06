@@ -1,79 +1,138 @@
+# typefence
 
-# @tiaanduplessis/type
-[![package version](https://img.shields.io/npm/v/@tiaanduplessis/type.svg?style=flat-square)](https://npmjs.org/package/@tiaanduplessis/type)
-[![package downloads](https://img.shields.io/npm/dm/@tiaanduplessis/type.svg?style=flat-square)](https://npmjs.org/package/@tiaanduplessis/type)
+[![package version](https://img.shields.io/npm/v/typefence.svg?style=flat-square)](https://npmjs.org/package/typefence)
+[![package downloads](https://img.shields.io/npm/dm/typefence.svg?style=flat-square)](https://npmjs.org/package/typefence)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![package license](https://img.shields.io/npm/l/@tiaanduplessis/type.svg?style=flat-square)](https://npmjs.org/package/@tiaanduplessis/type)
+[![package license](https://img.shields.io/npm/l/typefence.svg?style=flat-square)](https://npmjs.org/package/typefence)
 [![make a pull request](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-> Basic type checking
+Basic runtime type checking
 
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Contribute](#contribute)
-- [License](#License)
+- [typefence](#typefence)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Kitchen sink](#kitchen-sink)
+  - [API](#api)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Install
 
-This project uses [node](https://nodejs.org) and [npm](https://www.npmjs.com). 
+Install the package locally within you project folder with your package manager:
+
+With `npm`:
 
 ```sh
-$ npm install @tiaanduplessis/type
-$ # OR
-$ yarn add @tiaanduplessis/type
+npm install typefence
+```
+
+With `yarn`:
+
+```sh
+yarn add typefence
+```
+
+With `pnpm`:
+
+```sh
+pnpm add typefence
 ```
 
 ## Usage
 
-```js
-import * as type from '@tiaanduplessis/type'
+### Kitchen sink
 
-type.isArr([]) // true
-type.isArr(new Array(10)) // true
+```ts
+import {
+  isArr,
+  isArray,
+  isBool,
+  isBoolean,
+  isDate,
+  isEmpty,
+  isErr,
+  isEvery,
+  isFunc,
+  isFunction,
+  isJSON,
+  isNotStr,
+  isNull,
+  isNullish,
+  isNum,
+  isObj,
+  isObject,
+  isProm,
+  isPromise,
+  isSome,
+  isStr,
+  isString,
+  isSym,
+  isUndefined,
+} from "typefence";
 
-type.isBool(true) // true
-type.isBool(false) // true
-type.isBool(new Boolean()) // true
+isArr([]); // true
+isArray(new Array(10)); // true
 
-type.isDate(new Date()) // true
+isBool(true); // true
+isBoolean(false); // true
+isBool(new Boolean()); // true
 
-type.isEmpty([]) // true
-type.isEmpty('') // true
-type.isEmpty({}) // true
+isDate(new Date()); // true
 
-type.isErr(new Error('Error')) // true
+isEmpty([]); // true
+isEmpty(""); // true
+isEmpty({}); // true
 
-type.isJSON('{"foo": true}') // true
+isErr(new Error("Error")); // true
 
-type.isFunc(() => {}) // true
-type.isFunc(function noop() {}) // true
+isJSON('{"foo": true}'); // true
 
-type.isStr('')
-type.isStr('true')
+isFunc(() => {}); // true
+isFunction(function noop() {}); // true
 
-type.isUndef(undefined) // true
+isStr(""); // true
+isString("true"); // true
+isNotStr(false); // true
 
-type.isSym(Symbol('test')) // true
+isSym(Symbol("test")); // true
 
-type.isObj({}) // true
-type.isObj({foo: true}) // true
+isObj({}); // true
+isObject({ foo: true }); // true
 
-type.isProm(Promise.resolve({})) // true
-type.isProm(new Promise(() => {})) // true
+isProm(Promise.resolve({})); // true
+isPromise(new Promise(() => {})); // true
 
-type.isNull(null) // true
+isNull(null); // true
+isUndefined(undefined); // true
+isNullish(null); // true
+
+const isEmptyObject = isEvery(isObj, isEmpty);
+isEmptyObject({}); // true
+
+const isPrimitiveType = isSome(isStr, isBool, isNum);
+isPrimitiveType("str"); // true
 ```
 
-## Contribute
+### Negation
 
-1. Fork it and create your feature branch: git checkout -b my-new-feature
-2. Commit your changes: git commit -am 'Add some feature'
-3. Push to the branch: git push origin my-new-feature 
-4. Submit a pull request
+Every function has a negated alternative for convenience:
+
+```ts
+import { isNotNullish } from "typefence";
+isNotNullish({}); // true
+```
+
+## API
+
+For all configuration options, please see the [API docs](https://paka.dev/npm/typefence).
+
+## Contributing
+
+Got an idea for a new feature? Found a bug? Contributions are welcome! Please [open up an issue](https://github.com/tiaanduplessis/typefence/issues) or [make a pull request](https://makeapullrequest.com/).
 
 ## License
 
-MIT
-    
+[MIT © Tiaan du Plessis](./LICENSE)
