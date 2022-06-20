@@ -138,4 +138,10 @@ describe("typefence", () => {
     expect(t.isTruthy({})).toBeTruthy()
     expect(t.isTruthy([])).toBeTruthy()
   })
+
+  test('should check if blank', () => {
+    expect(t.isBlank('')).toBeTruthy()
+    expect(t.isBlank('\n')).toBeTruthy()
+    expect(t.isBlank(" ")).toBeTruthy()
+  })
 });

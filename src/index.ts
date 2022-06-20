@@ -104,3 +104,5 @@ export const isSame = (val1: any, val2: any): boolean => Object.is(val1, val2);
 
 export const isTruthy = (val: any): boolean => !!val;
 export const isFalsy = (val: any): boolean => !val;
+
+export const isBlank = (val: any): boolean => isStr(val) && (/^\s*$/).test(val.trim());
