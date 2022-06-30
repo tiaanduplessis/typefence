@@ -40,7 +40,7 @@ export const isErr = (val: any): val is Error =>
   val instanceof Error && typeof val.message !== "undefined";
 export const isError = isErr;
 
-export const isJSON = (val: any, strict: boolean = true): val is string => {
+export const isJSON = (val: any, strict: boolean = true): boolean => {
   try {
     const result = JSON.parse(val);
     return strict ? isObj(result) : true;
@@ -79,8 +79,8 @@ export const isNotPromise = isNotProm;
 export const isNull = (val: any): val is null => val === null;
 export const isNotNull = (val: any): val is null => !isNull(val);
 
-export const isNullish = (val: any): boolean => isNull(val) || isUndef(val);
-export const isNotNullish = (val: any): boolean => !isNullish(val);
+export const isNullish = (val: any) => isNull(val) || isUndef(val);
+export const isNotNullish = <T = any>(val: T): val is NonNullable<T> => !isNullish(val);
 
 export type CheckPredicate = (val: any) => boolean;
 
@@ -91,7 +91,7 @@ export const isEvery =
 
 export const isSome =
   (...checks: CheckPredicate[]) =>
-  (...vals: any[]): boolean =>
+  <T =  any>(...vals: T[]): boolean =>
     checks.some((isValid) => vals.some(isValid));
 
 export const asserts = (condition: any, msg?: string): asserts condition  =>{
@@ -102,7 +102,7 @@ export const asserts = (condition: any, msg?: string): asserts condition  =>{
 
 export const isSame = (val1: any, val2: any): boolean => Object.is(val1, val2);
 
-export const isTruthy = (val: any): boolean => !!val;
-export const isFalsy = (val: any): boolean => !val;
+export const isTruthy = <T = any >(val: T): boolean => !!val;
+export const isFalsy = <T  = any>(val: T): boolean => !val;
 
-export const isBlank = (val: any): boolean => isStr(val) && (/^\s*$/).test(val.trim());
+export const isBlank = <T = any>(val: T): boolean => isStr(val) && (/^\s*$/).test(val.trim());
