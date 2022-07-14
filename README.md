@@ -15,6 +15,7 @@ Basic runtime type checking
   - [Install](#install)
   - [Usage](#usage)
     - [Kitchen sink](#kitchen-sink)
+    - [Negation](#negation)
   - [API](#api)
   - [Contributing](#contributing)
   - [License](#license)
@@ -71,6 +72,7 @@ import {
   isString,
   isSym,
   isUndefined,
+  isPrimitive,
 } from "typefence";
 
 isArr([]); // true
@@ -112,13 +114,12 @@ isNullish(null); // true
 const isEmptyObject = isEvery(isObj, isEmpty);
 isEmptyObject({}); // true
 
-const isPrimitiveType = isSome(isStr, isBool, isNum);
-isPrimitiveType("str"); // true
+isPrimitive("str"); // true
 ```
 
 ### Negation
 
-Every function has a negated alternative for convenience:
+Most functions have a negated alternative for convenience:
 
 ```ts
 import { isNotNullish } from "typefence";
