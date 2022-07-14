@@ -33,7 +33,8 @@
     "prepublishOnly": "npm run build",
     "types:check": "tsc --noEmit",
     "format": "pretty-quick --ignore-path .gitignore",
-    "size": "dist-size"
+    "size": "dist-size",
+    "validate": "pnpm build && pnpm test"
   },
   "engines": {
     "node": ">=14"
