@@ -15,9 +15,9 @@ describe("typefence", () => {
   test("should check if value is boolean", () => {
     expect(t.isBool(true)).toBeTruthy();
     expect(t.isBool(false)).toBeTruthy();
-    expect(t.isBool(new Boolean())).toBeTruthy();
     expect(t.isBool(1)).toBeFalsy();
     expect(t.isBool("false")).toBeFalsy();
+    expect(t.isBoolLike(new Boolean())).toBeTruthy();
   });
 
   test("should check if value is date", () => {
@@ -102,7 +102,7 @@ describe("typefence", () => {
   });
 
   test("should check if value meets every predicate", () => {
-    const isChecks = t.isEvery(t.isObj, t.isEmpty)
+    const isChecks = t.isEvery(t.isObj, t.isEmpty);
     expect(isChecks({})).toBeTruthy();
   });
 
@@ -111,37 +111,37 @@ describe("typefence", () => {
     expect(isSomeChecks("str")).toBeTruthy();
   });
 
-  test('should assert condition', () => {
-    expect(() => t.asserts(true, 'true')).not.toThrowError('true');
-    expect(() => t.asserts(false, 'false')).toThrowError('false');
-  })
+  test("should assert condition", () => {
+    expect(() => t.asserts(true, "true")).not.toThrowError("true");
+    expect(() => t.asserts(false, "false")).toThrowError("false");
+  });
 
-  test('should check if values are the same', () => {
-    expect(t.isSame(true, true)).toBeTruthy()
-    expect(t.isSame('true', 'true')).toBeTruthy()
-    expect(t.isSame(true, false)).toBeFalsy()
-  })
+  test("should check if values are the same", () => {
+    expect(t.isSame(true, true)).toBeTruthy();
+    expect(t.isSame("true", "true")).toBeTruthy();
+    expect(t.isSame(true, false)).toBeFalsy();
+  });
 
-  test('should check if falsy', () => {
-    expect(t.isFalsy(false)).toBeTruthy()
-    expect(t.isFalsy(undefined)).toBeTruthy()
-    expect(t.isFalsy(null)).toBeTruthy()
-    expect(t.isFalsy(0)).toBeTruthy()
-    expect(t.isFalsy('')).toBeTruthy()
-  })
+  test("should check if falsy", () => {
+    expect(t.isFalsy(false)).toBeTruthy();
+    expect(t.isFalsy(undefined)).toBeTruthy();
+    expect(t.isFalsy(null)).toBeTruthy();
+    expect(t.isFalsy(0)).toBeTruthy();
+    expect(t.isFalsy("")).toBeTruthy();
+  });
 
-  test('should check if truthy', () => {
-    expect(t.isTruthy(true)).toBeTruthy()
-    expect(t.isTruthy('true')).toBeTruthy()
-    expect(t.isTruthy(1)).toBeTruthy()
-    expect(t.isTruthy(1.5)).toBeTruthy()
-    expect(t.isTruthy({})).toBeTruthy()
-    expect(t.isTruthy([])).toBeTruthy()
-  })
+  test("should check if truthy", () => {
+    expect(t.isTruthy(true)).toBeTruthy();
+    expect(t.isTruthy("true")).toBeTruthy();
+    expect(t.isTruthy(1)).toBeTruthy();
+    expect(t.isTruthy(1.5)).toBeTruthy();
+    expect(t.isTruthy({})).toBeTruthy();
+    expect(t.isTruthy([])).toBeTruthy();
+  });
 
-  test('should check if blank', () => {
-    expect(t.isBlank('')).toBeTruthy()
-    expect(t.isBlank('\n')).toBeTruthy()
-    expect(t.isBlank(" ")).toBeTruthy()
-  })
+  test("should check if blank", () => {
+    expect(t.isBlank("")).toBeTruthy();
+    expect(t.isBlank("\n")).toBeTruthy();
+    expect(t.isBlank(" ")).toBeTruthy();
+  });
 });
