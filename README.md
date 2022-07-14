@@ -1,4 +1,4 @@
-# typefence
+# 🤺 typefence
 
 [![package version](https://img.shields.io/npm/v/typefence.svg?style=flat-square)](https://npmjs.org/package/typefence)
 [![package downloads](https://img.shields.io/npm/dm/typefence.svg?style=flat-square)](https://npmjs.org/package/typefence)
